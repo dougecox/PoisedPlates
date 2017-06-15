@@ -15,7 +15,7 @@ ADD package.json yarn.lock /tmp/
 # Copy cache contents (if any) from local machine
 ADD .yarn-cache.tgz /
 
-RUN yarn global add knex
+RUN yarn global add knex node
 
 # Install packages
 RUN cd /tmp && yarn
@@ -29,7 +29,3 @@ RUN cd /opt/app && yarn run compile
 WORKDIR /opt/app
 
 CMD ["yarn", "start-docker"]
-
-# docker run -ti --rm 2094 /opt/app
-# docker exec -ti fe88e4fbdd25 psql -U postgres
-# DATABASE_URL: postgres://username:pgpassword@db:5432/mydatabase

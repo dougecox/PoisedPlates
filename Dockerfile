@@ -15,7 +15,7 @@ ADD package.json yarn.lock /tmp/
 # Copy cache contents (if any) from local machine
 ADD .yarn-cache.tgz /
 
-RUN yarn global add knex node
+RUN yarn global add knex
 
 # Install packages
 RUN cd /tmp && yarn

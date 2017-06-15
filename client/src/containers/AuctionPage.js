@@ -10,6 +10,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import Countdown from 'react-count-down';
 
 class AuctionPage extends Component {
   componentDidMount() {
@@ -34,7 +35,15 @@ class AuctionPage extends Component {
             /*avatar="https://scontent.cdninstagram.com/t51.2885-15/e35/15258783_1219743038096510_7805315801564577792_n.jpg"*/
           />
 
-          <CardMedia overlay={<CardTitle subtitle={`Ends: ${auction.end_time}`} />} >
+          <CardMedia
+            overlay={<CardTitle
+              subtitle={<Countdown
+                options={{
+                  endDate: auction.end_time.toString()
+                }}
+              />}
+            />}
+          >
             <img src={auction.images[0].url} />
           </CardMedia>
 

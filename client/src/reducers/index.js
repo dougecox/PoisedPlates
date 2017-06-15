@@ -5,6 +5,7 @@ import biddingReducer from './biddingReducer';
 import imagesReducer from './imagesReducer';
 import categoryReducer from './categoryReducer';
 import profileReducer from './profileReducer';
+import deviceReducer from './deviceReducer';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -12,7 +13,12 @@ const rootReducer = combineReducers({
   bidding: biddingReducer,
   images: imagesReducer,
   categories: categoryReducer,
+<<<<<<< HEAD
   profile: profileReducer
+=======
+  profile: profileReducer,
+  device: deviceReducer
+>>>>>>> (feat) Make camera upload conditionally render
 });
 
 export default rootReducer;

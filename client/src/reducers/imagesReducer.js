@@ -2,7 +2,7 @@ import { SELECT_IMAGE, DESELECT_IMAGE } from '../actions/index';
 
 const initialState = {
   displayImage: '../assets/placeholder.png'
-}
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -12,8 +12,8 @@ export default (state = initialState, action) => {
         file: action.payload.file
       });
     case DESELECT_IMAGE:
-      return {};
+      return Object.assign({}, state, initialState);
     default:
       return state;
   }
-}
+};

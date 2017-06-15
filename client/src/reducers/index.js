@@ -13,12 +13,8 @@ const rootReducer = combineReducers({
   bidding: biddingReducer,
   images: imagesReducer,
   categories: categoryReducer,
-<<<<<<< HEAD
-  profile: profileReducer
-=======
   profile: profileReducer,
   device: deviceReducer
->>>>>>> (feat) Make camera upload conditionally render
 });
 
 export default rootReducer;

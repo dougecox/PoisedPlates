@@ -11,8 +11,9 @@ export const DESELECT_IMAGE = 'DESELECT_IMAGE';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const CHANGE_CATEGORY = 'CHANGE_CATEGORY';
 export const FETCH_PROFILE_AUCTIONS = 'FETCH_PROFILE_AUCTIONS';
-export const FETCH_PROFILE_BIDS = 'FETCH_PROFILE_BIDS'
+export const FETCH_PROFILE_BIDS = 'FETCH_PROFILE_BIDS';
 export const QUERY_ES = 'QUERY_ES';
+export const IS_MOBILE = 'IS_MOBILE';
 
 export function fetchAuctions(categoryId) {
   const request = categoryId === 'all' ?
@@ -24,7 +25,6 @@ export function fetchAuctions(categoryId) {
     payload: request
   };
 }
-
 
 // Auction Actions:
 
@@ -61,6 +61,8 @@ export const toggleModal = () => ({ type: TOGGLE_MODAL });
 
 // Images Actions:
 
+export const isMobile = () => ({ type: IS_MOBILE });
+
 export const selectImage = (display, file) => ({
   type: SELECT_IMAGE,
   payload: {
@@ -70,7 +72,6 @@ export const selectImage = (display, file) => ({
 });
 
 export const deselectImage = () => ({ type: DESELECT_IMAGE });
-
 
 // Bidding Actions:
 
@@ -126,7 +127,7 @@ export const fetchCategories = () => {
 export const changeCategory = (id) => ({
   type: CHANGE_CATEGORY,
   payload: id
-})
+});
 
 
 

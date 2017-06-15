@@ -56,6 +56,42 @@ const categories = [
   ['toys+games', 'Toys & Games']
 ];
 
+const styles = {
+  outer: {
+    padding: '5rem'
+  },
+  inner: {
+    margin: 'auto',
+    width: '100%',
+    height: '100%'
+  },
+  align: {
+    verticalAlign: 'bottom'
+  },
+  button: {
+    margin: 8
+  },
+  imageInput: {
+    cursor: 'pointer',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    width: '100%',
+    opacity: 0,
+  },
+  card: {
+    // height: 300,
+    width: '80%'
+  },
+  state: {
+    marginLeft: 16,
+    verticalAlign: 'bottom',
+    width: 80
+  }
+}
+
 // validation functions
 const required = value => (value == null ? 'Required' : undefined);
 
@@ -107,43 +143,27 @@ class AuctionForm extends Component {
       });
   }
 
+  CameraUpload(props) {
+    return props.mobile ?
+    <RaisedButton
+      icon={<ImagePhotoCamera />}
+      labelPosition="before"
+      style={styles.button}
+    >
+      <input
+        type="file"
+        accept="image/*"
+        capture="camera"
+        style={styles.imageInput}
+        onChange={props.handleImages}
+      />
+    </RaisedButton> :
+    null;
+  }
+
   render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props;
-    const styles = {
-      outer: {
-        padding: '5rem'
-      },
-      inner: {
-        margin: 'auto',
-        width: '100%',
-        height: '100%'
-      },
-      align: {
-        verticalAlign: 'bottom'
-      },
-      button: {
-        margin: 8
-      },
-      imageInput: {
-        cursor: 'pointer',
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        right: 0,
-        left: 0,
-        width: '100%',
-        opacity: 0,
-      },
-      card: {
-        // height: 300,
-        width: '80%'
-      },
-      state: {
-        marginLeft: 16,
-        verticalAlign: 'bottom',
-        width: 80
-      }
-    }
+    const { handleSubmit, reset } = this.props;
+
     return (
       <div style={styles.outer} >
         <div style={styles.inner}>
@@ -167,19 +187,10 @@ class AuctionForm extends Component {
                 onChange={this.handleImages.bind(this)}
               />
             </RaisedButton>
-            <RaisedButton
-              icon={<ImagePhotoCamera />}
-              labelPosition="before"
-              style={styles.button}
-            >
-              <input
-                type="file"
-                accept="image/*"
-                capture="camera"
-                style={styles.imageInput}
-                onChange={this.handleImages.bind(this)}
-              />
-            </RaisedButton>
+            <this.CameraUpload
+              mobile={this.props.mobile}
+              handleImages={this.handleImages.bind(this)}
+            />
             {/*-- Category --*/}
             <div>
               <Field
@@ -286,8 +297,9 @@ class AuctionForm extends Component {
   }
 }
 
-const mapStateToProps = ({ images }) => {
+const mapStateToProps = ({ images, device }) => {
   return {
+    mobile: device.mobile,
     displayImage: images.displayImage,
     file: images.file
   };

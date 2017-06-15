@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 /* * Actions * */
-import { fetchCategories, changeCategory, fetchAuctions } from '../actions';
+import { fetchCategories, changeCategory, fetchAuctions, isMobile } from '../actions';
 
 /* * Styles * */
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -32,12 +32,14 @@ const LoggedIn = () => (
     anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
     targetOrigin={{horizontal: 'right', vertical: 'top'}}
   >
-    <Link to="/myaccount" style={styles.links} >
-      <MenuItem primaryText="My Account" />
-    </Link>
-    <a href="/logout" style={styles.links} >
-      <MenuItem primaryText="Sign out" />
-    </a>
+    <MenuItem
+      primaryText="My Account"
+      containerElement={<Link to="/myaccount" style={styles.links} />}
+    />
+    <MenuItem
+      primaryText="Sign out"
+      containerElement={<a href="/logout" style={styles.links} />}
+    />
   </IconMenu>
 );
 
@@ -66,7 +68,10 @@ const styles = {
 
 class Nav extends Component {
   componentDidMount() {
-    this.props.fetchCategories()
+    this.props.fetchCategories();
+    if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent) ) {
+      this.props.isMobile();
+    }
   }
 
   handleChange(e, value) {
@@ -136,4 +141,4 @@ const mapStateToProps = ({ categories }) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchCategories, changeCategory, fetchAuctions })(Nav);
+export default connect(mapStateToProps, { fetchCategories, changeCategory, fetchAuctions, isMobile })(Nav);

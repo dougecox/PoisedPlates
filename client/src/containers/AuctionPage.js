@@ -43,6 +43,7 @@ class AuctionPage extends Component {
                 }}
               />}
             />}
+            overlayContentStyle={{paddingBottom: 8}}
           >
             <img src={auction.images[0].url} />
           </CardMedia>

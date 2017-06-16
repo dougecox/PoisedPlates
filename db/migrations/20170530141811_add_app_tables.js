@@ -1,6 +1,6 @@
-
 exports.up = function(knex, Promise) {
   var date = knex.raw('now()');
+  return Promise.all([
     knex.schema.createTableIfNotExists('locations', function (table) {
       table.increments('id').unsigned().primary();
       table.string('city', 50).notNullable();

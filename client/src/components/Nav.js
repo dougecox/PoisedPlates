@@ -36,10 +36,9 @@ const LoggedIn = () => (
       primaryText="My Account"
       containerElement={<Link to="/myaccount" style={styles.links} />}
     />
-    <MenuItem
-      primaryText="Sign out"
-      containerElement={<a href="/logout" style={styles.links} />}
-    />
+    <a href="/logout" style={styles.links}>
+      <MenuItem primaryText="Log Out" />
+    </a>
   </IconMenu>
 );
 
